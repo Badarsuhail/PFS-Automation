@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFS Automation", "PFS Automation\PFS Automation.csproj", "{41BC9B90-80B9-4300-85C3-D3342BD967E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41BC9B90-80B9-4300-85C3-D3342BD967E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41BC9B90-80B9-4300-85C3-D3342BD967E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41BC9B90-80B9-4300-85C3-D3342BD967E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41BC9B90-80B9-4300-85C3-D3342BD967E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3BF26E8-CAB1-4DBE-8253-C7440C369F27}
+	EndGlobalSection
+EndGlobal
