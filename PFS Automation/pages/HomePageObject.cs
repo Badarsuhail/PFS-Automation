@@ -20,13 +20,17 @@ namespace PFS_Automation.pages
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[2]/ul/li[1]/a")]
         public IWebElement StartFromScratchbtn { get; set; }
+        [FindsBy(How = How.XPath, Using = "//*[@id='logoutForm']/ul/li[2]/a")]
+        public IWebElement settingbtn { get; set; }
+        [FindsBy(How = How.XPath, Using = "//*[@id='logoutForm']/ul/li[2]/ul/li[6]/a")]
+        public IWebElement materialbtn { get; set; }
         //[FindsBy(How = How.XPath, Using = "//*[@id='Password']")]
         //public IWebElement Upassword { get; set; }
         //[FindsBy(How = How.XPath, Using = "//*[@id='loginForm']/form/div[4]/div/input")]
         //public IWebElement Loginbtn { get; set; }
 
 
-      
+
     }
 
 }

@@ -26,7 +26,7 @@ namespace PFS_Automation
         }
         public static Boolean Validatemessage(String msg, string element)
         {
-            return (driver.FindElement(By.CssSelector(element)).Text == msg);
+            return (driver.FindElement(By.XPath(element)).Text == msg);
         }
        
     }

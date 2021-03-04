@@ -45,6 +45,11 @@ namespace PFS_Automation.pages
         public IWebElement porchdropdown{ get; set; }
         [FindsBy(How = How.XPath, Using = "//*[@id='Apply']")]
         public IWebElement applybtn { get; set; }
+        [FindsBy(How = How.XPath, Using = "//*[@id='tb_view3dToolbar_item_item3d']/table/tbody/tr/td")]
+        public IWebElement windowbtn { get; set; }
+        [FindsBy(How = How.XPath, Using = "//*[@id='tb_view3dToolbar_item_item3c']/table/tbody/tr/td")]
+        public IWebElement sliderbtn { get; set; }
+       
 
         public  void zoomIn()
         {
@@ -59,15 +64,6 @@ namespace PFS_Automation.pages
             review3d.Click();
             doorbtn.Click();
             System.Threading.Thread.Sleep(5000);
-            //jobpage.cancelbtn.Click();
-            //System.Threading.Thread.Sleep(5000);
-
-            //jobpage.Jobbtn.Click();
-            //jobpage.NameTxt.SendKeys("test");
-            //jobpage.PhoneTxt.Click();
-            //System.Threading.Thread.Sleep(3000);
-            //jobpage.Savebtn.Click();
-            //jobpage.Homebtn.Click();
             int h = canvas.Size.Height / 2;
             int w = canvas.Size.Width / 2;
             Actions actions = new Actions(PropertiesCollection.driver);
@@ -99,7 +95,37 @@ namespace PFS_Automation.pages
             applybtn.Click();
 
         }
+        public void InsertWindows()
+        {
+            review3d.Click();
+            windowbtn.Click();
+            System.Threading.Thread.Sleep(5000);
+            int h = canvas.Size.Height / 2;
+            int w = canvas.Size.Width / 2;
+            Actions actions = new Actions(PropertiesCollection.driver);
+            actions.ClickAndHold(canvas)
+             .MoveByOffset(-70, -20)
+             .Release().Build().Perform();
+            actions.Release();
+            actions.MoveToElement(canvas, w, h).Click().Build().Perform();
 
+        }
+
+        public void InsertSlider()
+        {
+            //review3d.Click();
+            sliderbtn.Click();
+            System.Threading.Thread.Sleep(5000);
+            int h = canvas.Size.Height / 2;
+            int w = canvas.Size.Width / 2;
+            Actions actions = new Actions(PropertiesCollection.driver);
+            actions.ClickAndHold(canvas)
+             .MoveByOffset(-40, -20)
+             .Release().Build().Perform();
+            actions.Release();
+            actions.MoveToElement(canvas, w, h).Click().Build().Perform();
+
+        }
 
 
     }
