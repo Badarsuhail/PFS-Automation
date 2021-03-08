@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using SeleniumExtras.PageObjects;
@@ -58,6 +59,19 @@ namespace PFS_Automation.pages
            //  (Keys.Control, Keys.Add);
             }
         }
+        public void SaveJobAndVerify(string title)
+        {
+            Jobbtn.Click();
+            NameTxt.SendKeys(title);
+            PhoneTxt.Click();
+            Savebtn.Click();
+            System.Threading.Thread.Sleep(6000);
+            Homebtn.Click();
+            Assert.IsTrue(PropertiesCollection.Validatemessage("test", "/html/body/div[2]/div[2]/span[2]/a"));
+
+
+
+        }
 
         public void InsertAndverifyDoor()
         {
@@ -77,11 +91,11 @@ namespace PFS_Automation.pages
             doors.Click();
             if (qty == "")
             {
-                Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(PropertiesCollection.Validatemessage("1", "#grid_MaterialsGrid_rec_0 > td:nth-child(5) > div:nth-child(1)"));
+                Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(PropertiesCollection.Validatemessage("1", "//*[@id='grid_MaterialsGrid_rec_0']/td[5]/div"));
             }
             else
             {
-                Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(PropertiesCollection.Validatemessage(qty, "#grid_MaterialsGrid_rec_0 > td:nth-child(5) > div:nth-child(1)"));
+                Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(PropertiesCollection.Validatemessage(qty+1, "//*[@id='grid_MaterialsGrid_rec_0']/td[5]/div"));
 
 
             }

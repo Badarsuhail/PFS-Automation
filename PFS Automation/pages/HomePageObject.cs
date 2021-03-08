@@ -24,7 +24,7 @@ namespace PFS_Automation.pages
         public IWebElement settingbtn { get; set; }
         [FindsBy(How = How.XPath, Using = "//*[@id='logoutForm']/ul/li[2]/ul/li[6]/a")]
         public IWebElement materialbtn { get; set; }
-        [FindsBy(How = How.CssSelector, Using = "#model-group-PerformanceTests > div:nth-child(5) > div > a")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div[2]/div[3]/div/a")]
         public IWebElement largemodal { get; set; }
         //[FindsBy(How = How.XPath, Using = "//*[@id='loginForm']/form/div[4]/div/input")]
         //public IWebElement Loginbtn { get; set; }
