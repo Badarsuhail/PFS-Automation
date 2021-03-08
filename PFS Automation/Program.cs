@@ -108,7 +108,7 @@ namespace PFS_Automation
             home = login.login("romanpete404@gmail.com", "Romanpete!");
             home.settingbtn.Click();
             home.materialbtn.Click();
-             TrussesPageObject t= new TrussesPageObject();
+             MaterialPageObject t= new MaterialPageObject();
             t.UploadData();
             PropertiesCollection.Validatemessage( "Your update is now processing. You will recieve an email at 'romanpete404@gmail.com' when it is complete. Be sure to add 'SmartBuildFramerSupport@keymark.com' to your safe sender list so you dont miss it. ", "//*[@id='status']");
             System.Threading.Thread.Sleep(2000);

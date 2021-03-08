@@ -6,9 +6,9 @@ using System.Text;
 
 namespace PFS_Automation.pages
 {
-    class TrussesPageObject
+    class MaterialPageObject
     {
-        public TrussesPageObject()
+        public MaterialPageObject()
         {
             PageFactory.InitElements(PropertiesCollection.driver, this);
         }
