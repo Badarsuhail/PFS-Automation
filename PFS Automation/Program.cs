@@ -10,6 +10,9 @@ using OpenQA.Selenium.Opera;
 using OpenQA.Selenium.Support.UI;
 using Assert = NUnit.Framework.Assert;
 using System.Linq;
+using Microsoft.Office.Interop.Excel;
+using _excel = Microsoft.Office.Interop.Excel;
+
 
 namespace PFS_Automation
 {
@@ -17,10 +20,11 @@ namespace PFS_Automation
     {
 
 
+      public  Workbook workbook;
+        public  Worksheet worksheet;
 
-    
 
-      [SetUp]
+        [SetUp]
 
       public void Initialize()
         {
@@ -35,7 +39,25 @@ namespace PFS_Automation
         {
             System.Threading.Thread.Sleep(2000);
 
-            PropertiesCollection.OpenTabs(3);
+
+            this.CreateExcel(5);
+            //_Application excel = new _excel.Application();
+          
+            //workbook = excel.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
+            //worksheet = (Worksheet)workbook.Worksheets[1];
+            //worksheet.Cells[1, 1] = "No";
+            //worksheet.Cells[1, 2] = "Time";
+
+            //worksheet.Cells[2, 1] = 1;
+            //worksheet.Cells[2, 2] = this.RecordCanvasloadTime();
+            //PropertiesCollection.OpenTabs(1);
+            //PropertiesCollection.driver.SwitchTo().Window(PropertiesCollection.driver.WindowHandles[1]);
+            //worksheet.Cells[3, 1] = 1;
+            //worksheet.Cells[3, 2] = this.RecordCanvasloadTime();
+            //workbook.SaveAs(@"C:\SysWOW64\config\systemprofile\desktop\test1.xlsx");
+            //workbook.Close();
+            // xlApp.Quit();
+
             //String test_url = "https://betapostframesolver.azurewebsites.net/Account/Login";
             //WebDriverWait wait = new WebDriverWait(PropertiesCollection.driver, TimeSpan.FromSeconds(10));
             //PropertiesCollection.driver.Url = test_url;
@@ -56,8 +78,9 @@ namespace PFS_Automation
             //System.Threading.Thread.Sleep(2000);
 
         }
+       
 
- 
+
 
         [Test]
 
@@ -88,8 +111,7 @@ namespace PFS_Automation
             {
                 jobpage.qty = PropertiesCollection.driver.FindElement(By.XPath("/html/body/div/div[1]/div/div[5]/div[4]/div/div[5]/div[4]/div/div/div[3]/div[1]/table/tbody/tr[3]/td[5]/div")).Text;
                 jobpage.InsertAndverifyDoor();
-               
-
+           
             }
             catch
             {
@@ -116,7 +138,7 @@ namespace PFS_Automation
         }
 
         [Test]
-        public void RecordCanvasloadTime()
+        public Double RecordCanvasloadTime()
         {
            
             LoginPageObject login = new LoginPageObject();
@@ -125,15 +147,40 @@ namespace PFS_Automation
             var start = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             System.Threading.Thread.Sleep(5000);
             home.StartFromScratchbtn.Click();
-            WebDriverWait wait = new WebDriverWait(PropertiesCollection.driver, TimeSpan.FromSeconds(10));
+            WebDriverWait wait = new WebDriverWait(PropertiesCollection.driver, TimeSpan.FromSeconds(30));
             IWebElement myDynamicElement = wait.Until<IWebElement>((d) =>
             {
                 return d.FindElement(By.XPath("//*[@id='drawingArea']"));
             });
             var finish = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             Console.WriteLine(finish - start);
+            System.Threading.Thread.Sleep(3000);
+            return finish - start;
         }
-        [TearDown]
+        public void CreateExcel(int n)
+        {
+
+            _Application excel = new _excel.Application();
+
+            workbook = excel.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
+            worksheet = (Worksheet)workbook.Worksheets[1];
+            worksheet.Cells[1, 1] = "No";
+            worksheet.Cells[1, 2] = "Time";
+            for (int i = 1; i <= n; i++)
+            {
+              
+                worksheet.Cells[i+1, 1] = i;
+                worksheet.Cells[i+1, 2] = this.RecordCanvasloadTime();
+                    PropertiesCollection.OpenTabs(1);
+                //    PropertiesCollection.driver.SwitchTo().Window(PropertiesCollection.driver.WindowHandles[i-1]);
+                //PropertiesCollection.driver.Navigate().GoToUrl("https://betapostframesolver.azurewebsites.net/Account/Login");
+            }
+            worksheet.Cells[n+2,1] = "Average";
+            worksheet.Cells[n + 2, 2] = "=AVERAGE(B2:B" + (n+1) + ","+n+")";
+            workbook.SaveAs(@"C:\SysWOW64\config\systemprofile\desktop\test11.xlsx");
+            workbook.Close();
+        }
+            [TearDown]
         public void close()
         {
         PropertiesCollection.driver.Quit();
